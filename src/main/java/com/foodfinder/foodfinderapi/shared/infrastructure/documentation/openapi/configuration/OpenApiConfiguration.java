@@ -1,4 +1,4 @@
-package com.foodfinder.foodfinderapi.shared.infraestructure.documentation.openapi.configuration;
+package com.foodfinder.foodfinderapi.shared.infrastructure.documentation.openapi.configuration;
 
 
 import io.swagger.v3.oas.models.OpenAPI;
