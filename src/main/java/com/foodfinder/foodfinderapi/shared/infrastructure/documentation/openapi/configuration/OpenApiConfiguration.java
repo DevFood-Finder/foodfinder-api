@@ -11,19 +11,19 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class OpenApiConfiguration {
     @Bean
-    public OpenAPI learningPlatformOpenApi() {
+    public OpenAPI foodFinderOpenApi() {
         // General configuration
         var openAPI = new OpenAPI();
         openAPI.info(new Info()
-                .title("ACME Learning Platform")
-                .description("ACME Learning Platform application REST API documentation.")
+                .title("FoodFinder API")
+                .description("FoodFinder application REST API documentation.")
                 .version("v1.0.0")
                 .license(new License()
                         .name("Apache 2.0")
                         .url("https://springdoc.org")))
                 .externalDocs(new ExternalDocumentation()
-                        .description("ACME Learning Platform wiki Documentation")
-                        .url("https://acme-learning-platform.wiki.github.io/docs"));
+                        .description("FoodFinder wiki Documentation")
+                        .url("https://food-finder.wiki.github.io/docs"));
         return openAPI;
 
     }
