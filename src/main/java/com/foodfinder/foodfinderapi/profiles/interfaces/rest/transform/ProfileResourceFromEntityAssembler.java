@@ -5,7 +5,7 @@ import com.foodfinder.foodfinderapi.profiles.interfaces.rest.resources.ProfileRe
 
 public class ProfileResourceFromEntityAssembler {
     public static ProfileResource toResourceFromEntity(Profile entity) {
-        return new ProfileResource(entity.getId(), entity.FullName(), entity.getEmailAddress(),
+        return new ProfileResource(entity.getId(), entity.RestaurantName(),  entity.FullName(), entity.getEmailAddress(),
                 entity.getStreetAddress());
     }
 }

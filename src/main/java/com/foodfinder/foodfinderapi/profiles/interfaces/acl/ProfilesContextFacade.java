@@ -38,8 +38,8 @@ public class ProfilesContextFacade {
      * @param country the country
      * @return the profile id
      */
-    public Long createProfile(String firstName, String lastName, String email, String street, String number, String city, String postalCode, String country) {
-        var createProfileCommand = new CreateProfileCommand(firstName, lastName, email, street, number, city, postalCode, country);
+    public Long createProfile(String name, String firstName, String lastName, String email, String street, String number, String city, String postalCode, String country) {
+        var createProfileCommand = new CreateProfileCommand(name, firstName, lastName, email, street, number, city, postalCode, country);
         var profile = profileCommandService.handle(createProfileCommand);
         if (profile.isEmpty()) return 0L;
         return profile.get().getId();

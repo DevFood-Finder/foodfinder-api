@@ -78,6 +78,8 @@ public class Profile extends AuditableAbstractAggregateRoot<Profile> {
         this.address = new StreetAddress(street, number, city, postalCode, country);
     }
 
+
+    public String RestaurantName() { return name.getFullName(); }
     public String FullName() { return owner.getFullName(); }
     public String getEmailAddress() { return email.address(); }
     public String getStreetAddress() { return address.getStreetAddress(); }
