@@ -1,7 +1,7 @@
 package com.foodfinder.foodfinderapi.profiles.domain.model.aggregates;
 
-import com.foodfinder.foodfinderapi.profiles.domain.model.commands.CreateProfileCommand;
-import com.foodfinder.foodfinderapi.profiles.domain.model.valueobjects.OwnerName;
+import com.foodfinder.foodfinderapi.profiles.domain.model.commands.CreateRestaurantProfileCommand;
+import com.foodfinder.foodfinderapi.profiles.domain.model.valueobjects.UserName;
 import com.foodfinder.foodfinderapi.shared.domain.model.aggregates.AuditableAbstractAggregateRoot;
 import com.foodfinder.foodfinderapi.profiles.domain.model.valueobjects.RestaurantName;
 import com.foodfinder.foodfinderapi.profiles.domain.model.valueobjects.StreetAddress;
@@ -12,13 +12,13 @@ import jakarta.persistence.*;
 import java.util.Set;
 
 @Entity
-public class Profile extends AuditableAbstractAggregateRoot<Profile> {
+public class RestaurantProfile extends AuditableAbstractAggregateRoot<RestaurantProfile> {
 
     @Embedded
     private RestaurantName name;
 
     @Embedded
-    private OwnerName owner;
+    private UserName owner;
 
     @Embedded
     @AttributeOverrides({
@@ -39,25 +39,37 @@ public class Profile extends AuditableAbstractAggregateRoot<Profile> {
 
     /*Todavia por verse, deberia tomar prestado de otra tabla Categoria, no implementado por ahora*/
     @ManyToMany
+    @JoinTable(
+            joinColumns = @JoinColumn(name = "restaurant_id"),
+            inverseJoinColumns = @JoinColumn(name = "category_id")
+    )
     private Set<Categories> categories;
 
-    public Profile(String Name, String firstName, String lastName, String email, String street, String number,
-                   String city, String postalCode, String country) {
+    public Set<Categories> getCategories() {
+        return categories;
+    }
+
+    public void setCategories(Set<Categories> categories) {
+        this.categories = categories;
+    }
+
+    public RestaurantProfile(String Name, String firstName, String lastName, String email, String street, String number,
+                             String city, String postalCode, String country) {
         this.name = new RestaurantName(Name);
-        this.owner= new OwnerName(firstName, lastName);
+        this.owner= new UserName(firstName, lastName);
         this.email = new EmailAddress(email);
         this.address = new StreetAddress(street, number, city, postalCode, country);
     }
 
-    public Profile(CreateProfileCommand command) {
+    public RestaurantProfile(CreateRestaurantProfileCommand command) {
         this.name = new RestaurantName(command.Name());
-        this.owner = new OwnerName(command.firstName(), command.lastName());
+        this.owner = new UserName(command.firstName(), command.lastName());
         this.email = new EmailAddress(command.email());
         this.address = new StreetAddress(command.street(), command.number(),
                 command.city(), command.postalCode(), command.country());
     }
 
-    public Profile() {
+    public RestaurantProfile() {
 
     }
 
@@ -66,7 +78,7 @@ public class Profile extends AuditableAbstractAggregateRoot<Profile> {
     }
 
     public void updateOwner(String firstName, String lastName) {
-        this.owner = new OwnerName(firstName, lastName);
+        this.owner = new UserName(firstName, lastName);
     }
 
     public void updateEmail(String email) {

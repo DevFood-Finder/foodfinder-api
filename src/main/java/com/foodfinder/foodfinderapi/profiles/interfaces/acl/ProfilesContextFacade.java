@@ -1,10 +1,10 @@
 package com.foodfinder.foodfinderapi.profiles.interfaces.acl;
 
-import com.foodfinder.foodfinderapi.profiles.domain.model.commands.CreateProfileCommand;
+import com.foodfinder.foodfinderapi.profiles.domain.model.commands.CreateRestaurantProfileCommand;
 import com.foodfinder.foodfinderapi.profiles.domain.model.queries.GetProfileByEmailQuery;
 import com.foodfinder.foodfinderapi.profiles.domain.model.valueobjects.EmailAddress;
-import com.foodfinder.foodfinderapi.profiles.domain.services.ProfileCommandService;
-import com.foodfinder.foodfinderapi.profiles.domain.services.ProfileQueryService;
+import com.foodfinder.foodfinderapi.profiles.domain.services.RestaurantProfileCommandService;
+import com.foodfinder.foodfinderapi.profiles.domain.services.RestaurantProfileQueryService;
 import org.springframework.stereotype.Service;
 
 /**
@@ -17,11 +17,11 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class ProfilesContextFacade {
-    private final ProfileCommandService profileCommandService;
-    private final ProfileQueryService profileQueryService;
+    private final RestaurantProfileCommandService restaurantProfileCommandService;
+    private final RestaurantProfileQueryService profileQueryService;
 
-    public ProfilesContextFacade(ProfileCommandService profileCommandService, ProfileQueryService profileQueryService) {
-        this.profileCommandService = profileCommandService;
+    public ProfilesContextFacade(RestaurantProfileCommandService restaurantProfileCommandService, RestaurantProfileQueryService profileQueryService) {
+        this.restaurantProfileCommandService = restaurantProfileCommandService;
         this.profileQueryService = profileQueryService;
     }
 
@@ -39,8 +39,8 @@ public class ProfilesContextFacade {
      * @return the profile id
      */
     public Long createProfile(String name, String firstName, String lastName, String email, String street, String number, String city, String postalCode, String country) {
-        var createProfileCommand = new CreateProfileCommand(name, firstName, lastName, email, street, number, city, postalCode, country);
-        var profile = profileCommandService.handle(createProfileCommand);
+        var createProfileCommand = new CreateRestaurantProfileCommand(name, firstName, lastName, email, street, number, city, postalCode, country);
+        var profile = restaurantProfileCommandService.handle(createProfileCommand);
         if (profile.isEmpty()) return 0L;
         return profile.get().getId();
     }

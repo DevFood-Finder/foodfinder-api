@@ -2,8 +2,8 @@ package com.foodfinder.foodfinderapi.profiles.interfaces.rest;
 
 import com.foodfinder.foodfinderapi.profiles.domain.model.queries.GetAllProfilesQuery;
 import com.foodfinder.foodfinderapi.profiles.domain.model.queries.GetProfileByIdQuery;
-import com.foodfinder.foodfinderapi.profiles.domain.services.ProfileCommandService;
-import com.foodfinder.foodfinderapi.profiles.domain.services.ProfileQueryService;
+import com.foodfinder.foodfinderapi.profiles.domain.services.RestaurantProfileCommandService;
+import com.foodfinder.foodfinderapi.profiles.domain.services.RestaurantProfileQueryService;
 import com.foodfinder.foodfinderapi.profiles.interfaces.rest.resources.CreateProfileResource;
 import com.foodfinder.foodfinderapi.profiles.interfaces.rest.resources.ProfileResource;
 import com.foodfinder.foodfinderapi.profiles.interfaces.rest.transform.CreateProfileCommandFromResourceAssembler;
@@ -19,22 +19,22 @@ import java.util.stream.Collectors;
 
 
 @RestController
-@RequestMapping(value = "/api/v1/profiles", produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(value = "/api/v1/restaurantProfiles", produces = MediaType.APPLICATION_JSON_VALUE)
 @Tag(name = "Profiles", description = "Profile Management Endpoints")
 public class ProfilesController {
-    private final ProfileQueryService profileQueryService;
-    private final ProfileCommandService profileCommandService;
+    private final RestaurantProfileQueryService profileQueryService;
+    private final RestaurantProfileCommandService restaurantProfileCommandService;
 
-    public ProfilesController(ProfileQueryService profileQueryService,
-                              ProfileCommandService profileCommandService) {
+    public ProfilesController(RestaurantProfileQueryService profileQueryService,
+                              RestaurantProfileCommandService restaurantProfileCommandService) {
         this.profileQueryService = profileQueryService;
-        this.profileCommandService = profileCommandService;
+        this.restaurantProfileCommandService = restaurantProfileCommandService;
     }
 
     @PostMapping
     public ResponseEntity<ProfileResource> createProfile(@RequestBody CreateProfileResource resource) {
         var createProfileCommand = CreateProfileCommandFromResourceAssembler.toCommandFromResource(resource);
-        var profile = profileCommandService.handle(createProfileCommand);
+        var profile = restaurantProfileCommandService.handle(createProfileCommand);
         if (profile.isEmpty()) return  ResponseEntity.badRequest().build();
         var profileResource = ProfileResourceFromEntityAssembler.toResourceFromEntity(profile.get());
         return new ResponseEntity<>(profileResource, HttpStatus.CREATED);
