@@ -33,8 +33,8 @@ public class UserProfilesContextFacade {
      * @param email the email
      * @return the profile id
      */
-    public Long createProfile(String name, String firstName, String lastName, String email) {
-        var createProfileCommand = new CreateUserProfileCommand(name, firstName, lastName, email);
+    public Long createProfile(String firstName, String lastName, String email) {
+        var createProfileCommand = new CreateUserProfileCommand(firstName, lastName, email);
         var profile = userProfileCommandService.handle(createProfileCommand);
         if (profile.isEmpty()) return 0L;
         return profile.get().getId();

@@ -9,9 +9,6 @@ import jakarta.persistence.*;
 public class UserProfile extends AuditableAbstractAggregateRoot<UserProfile> {
 
     @Embedded
-    private RestaurantName name;
-
-    @Embedded
     private UserName user;
 
     @Embedded
@@ -21,14 +18,12 @@ public class UserProfile extends AuditableAbstractAggregateRoot<UserProfile> {
     private EmailAddress email;
 
 
-    public UserProfile(String Name, String firstName, String lastName, String email) {
-        this.name = new RestaurantName(Name);
+    public UserProfile(String firstName, String lastName, String email) {
         this.user= new UserName(firstName, lastName);
         this.email = new EmailAddress(email);
     }
 
     public UserProfile(CreateUserProfileCommand command) {
-        this.name = new RestaurantName(command.Name());
         this.user = new UserName(command.firstName(), command.lastName());
         this.email = new EmailAddress(command.email());
     }
@@ -37,11 +32,7 @@ public class UserProfile extends AuditableAbstractAggregateRoot<UserProfile> {
 
     }
 
-    public void updateName(String Name) {
-        this.name = new RestaurantName(Name);
-    }
-
-    public void updateOwner(String firstName, String lastName) {
+    public void updateUser(String firstName, String lastName) {
         this.user = new UserName(firstName, lastName);
     }
 
@@ -50,8 +41,6 @@ public class UserProfile extends AuditableAbstractAggregateRoot<UserProfile> {
     }
 
 
-
-    public String RestaurantName() { return name.getFullName(); }
     public String FullName() { return user.getFullName(); }
     public String getEmailAddress() { return email.address(); }
 }
