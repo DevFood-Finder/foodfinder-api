@@ -20,7 +20,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping(value = "/api/v1/restaurantProfiles", produces = MediaType.APPLICATION_JSON_VALUE)
-@Tag(name = "Profiles", description = "Profile Management Endpoints")
+@Tag(name = "Restaurant Profiles", description = "Profile Management Endpoints")
 public class ProfilesController {
     private final RestaurantProfileQueryService profileQueryService;
     private final RestaurantProfileCommandService restaurantProfileCommandService;
