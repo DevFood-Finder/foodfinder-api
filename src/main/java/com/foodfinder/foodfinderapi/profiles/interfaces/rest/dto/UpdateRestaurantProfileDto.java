@@ -1,4 +1,4 @@
-package com.foodfinder.foodfinderapi.security.service.dto;
+package com.foodfinder.foodfinderapi.profiles.interfaces.rest.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,11 +9,9 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class RegisterRequestDto {
-    private String firstname;
-    private String lastname;
-    private String email;
-    private String password;
+public class UpdateRestaurantProfileDto {
+    private String restaurantName;
+    private String phone;
     private String street;
     private String number;
     private String postalCode;

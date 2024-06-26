@@ -1,11 +1,11 @@
 package com.foodfinder.foodfinderapi.security.service;
 
-import com.foodfinder.foodfinderapi.restaurant.domain.model.entity.Restaurant;
-import com.foodfinder.foodfinderapi.client.domain.model.entity.Client;
+import com.foodfinder.foodfinderapi.profiles.domain.model.entity.Restaurant;
+import com.foodfinder.foodfinderapi.profiles.domain.model.entity.Client;
 import com.foodfinder.foodfinderapi.security.domain.model.entity.*;
-import com.foodfinder.foodfinderapi.restaurant.infrastructure.persistence.jpa.repositories.RestaurantRepository;
+import com.foodfinder.foodfinderapi.profiles.infrastructure.persistence.jpa.repositories.RestaurantRepository;
 import com.foodfinder.foodfinderapi.security.domain.persistence.UserRepository;
-import com.foodfinder.foodfinderapi.client.infrastructure.persistence.jpa.repositories.ClientRepository;
+import com.foodfinder.foodfinderapi.profiles.infrastructure.persistence.jpa.repositories.ClientRepository;
 import com.foodfinder.foodfinderapi.security.service.dto.AuthenticationRequestDto;
 import com.foodfinder.foodfinderapi.security.service.dto.AuthenticationResponseDto;
 import com.foodfinder.foodfinderapi.security.service.dto.RegisterRequestDto;
@@ -55,8 +55,6 @@ public class AuthenticationService {
                     .lastname(registerRequestDto.getLastname())
                     .email(registerRequestDto.getEmail())
                     .password(passwordEncoder.encode(registerRequestDto.getPassword()))
-                    .profilePictureUrl(registerRequestDto.getProfilePictureUrl())
-                    .phoneNumber(registerRequestDto.getPhoneNumber())
                     .street(registerRequestDto.getStreet())
                     .number(registerRequestDto.getNumber())
                     .postalCode(registerRequestDto.getPostalCode())
@@ -76,8 +74,6 @@ public class AuthenticationService {
                     .lastname(registerRequestDto.getLastname())
                     .email(registerRequestDto.getEmail())
                     .password(passwordEncoder.encode(registerRequestDto.getPassword()))
-                    .profilePictureUrl(registerRequestDto.getProfilePictureUrl())
-                    .phoneNumber(registerRequestDto.getPhoneNumber())
                     .street(registerRequestDto.getStreet())
                     .number(registerRequestDto.getNumber())
                     .postalCode(registerRequestDto.getPostalCode())

@@ -54,14 +54,6 @@ public class User implements UserDetails, CredentialsContainer {
     @Size(min = 1, max = 50)
     private String firstname;
 
-    @NotNull
-    @NotBlank
-    private String profilePictureUrl;
-
-
-    private String phoneNumber;
-
-
     private String street;
 
     private String number;

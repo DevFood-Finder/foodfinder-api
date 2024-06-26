@@ -13,7 +13,9 @@ import lombok.NoArgsConstructor;
 public class UpdateUserRequestDto {
     private String firstname;
     private String lastname;
-    private String phoneNumber;
-    private String profilePictureUrl;
+    private String street;
+    private String number;
+    private String postalCode;
+    private String city;
     private String country;
 }

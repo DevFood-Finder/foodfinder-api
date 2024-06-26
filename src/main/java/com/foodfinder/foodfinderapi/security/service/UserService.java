@@ -36,9 +36,11 @@ public class UserService {
                 .map(user -> {
                     user.setFirstname(updatedUser.getFirstname());
                     user.setLastname(updatedUser.getLastname());
-                    user.setPhoneNumber(updatedUser.getPhoneNumber());
+                    user.setStreet(updatedUser.getStreet());
+                    user.setNumber(updatedUser.getNumber());
+                    user.setPostalCode(updatedUser.getPostalCode());
+                    user.setCity(updatedUser.getCity());
                     user.setCountry(updatedUser.getCountry());
-                    user.setProfilePictureUrl(updatedUser.getProfilePictureUrl());
 
                     return userRepository.save(user);
                 })
