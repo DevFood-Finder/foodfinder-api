@@ -12,6 +12,7 @@ import lombok.NoArgsConstructor;
 public class UpdateRestaurantProfileDto {
     private String restaurantName;
     private String phone;
+    private String photoUrl;
     private String street;
     private String number;
     private String postalCode;

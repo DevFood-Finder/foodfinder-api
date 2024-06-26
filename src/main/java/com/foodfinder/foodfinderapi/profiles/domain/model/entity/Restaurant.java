@@ -20,6 +20,8 @@ import org.hibernate.annotations.FetchMode;
 @Table(name="restaurants")
 public class Restaurant extends User {
 
+
+
     @Fetch(FetchMode.JOIN)
     @Column(name = "restaurant_name")
     private String restaurantName;
@@ -28,6 +30,12 @@ public class Restaurant extends User {
     @Column(name = "restaurant_phone")
     private String phone;
 
+    @Fetch(FetchMode.JOIN)
+    @Column(name = "restaurant_rating")
+    private Integer rating;
 
+    @Fetch(FetchMode.JOIN)
+    @Column(name = "restaurant_photo")
+    private String photoUrl;
 
 }

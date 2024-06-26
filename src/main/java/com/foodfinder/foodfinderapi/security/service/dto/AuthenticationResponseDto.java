@@ -1,7 +1,6 @@
 package com.foodfinder.foodfinderapi.security.service.dto;
 
-import com.foodfinder.foodfinderapi.profiles.domain.model.entity.Restaurant;
-import com.foodfinder.foodfinderapi.profiles.domain.model.entity.Client;
+
 import com.foodfinder.foodfinderapi.security.domain.model.entity.User;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

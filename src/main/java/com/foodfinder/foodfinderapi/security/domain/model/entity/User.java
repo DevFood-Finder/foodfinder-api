@@ -72,6 +72,7 @@ public class User implements UserDetails, CredentialsContainer {
 
     }
 
+    @JsonIgnore
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return List.of(new SimpleGrantedAuthority(role.name()));
@@ -82,24 +83,10 @@ public class User implements UserDetails, CredentialsContainer {
         return password;
     }
 
+    @JsonIgnore
     @Override
     public String getUsername() {
         return email;
-    }
-
-    @Override
-    public boolean isAccountNonExpired() {
-        return true;
-    }
-
-    @Override
-    public boolean isAccountNonLocked() {
-        return true;
-    }
-
-    @Override
-    public boolean isCredentialsNonExpired() {
-        return true;
     }
 
 
