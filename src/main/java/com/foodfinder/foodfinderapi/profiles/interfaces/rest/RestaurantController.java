@@ -49,7 +49,7 @@ public class RestaurantController {
         return restaurantQueryService.handle(getRestaurantByIdQuery).orElse(null);
     }
 
-    @Operation(summary = "Update Restaurant professional profile", responses = {
+    @Operation(summary = "Update Restaurant profile", responses = {
             @ApiResponse(description = "Restaurant found",
                     responseCode = "201",
                     content = @Content(mediaType = "application/json",
