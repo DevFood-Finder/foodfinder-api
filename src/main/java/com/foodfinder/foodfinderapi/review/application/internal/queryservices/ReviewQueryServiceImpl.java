@@ -4,6 +4,7 @@ import com.foodfinder.foodfinderapi.review.domain.model.aggregates.Review;
 import com.foodfinder.foodfinderapi.review.domain.model.queries.GetAllReviewsQuery;
 import com.foodfinder.foodfinderapi.review.domain.model.queries.GetReviewsByIdQuery;
 import com.foodfinder.foodfinderapi.review.domain.model.queries.GetReviewsByQualification;
+import com.foodfinder.foodfinderapi.review.domain.model.queries.GetReviewsByRestaurantNameQuery;
 import com.foodfinder.foodfinderapi.review.domain.services.ReviewQueryService;
 import com.foodfinder.foodfinderapi.review.infrastructure.persistence.jpa.repositories.ReviewRepository;
 import org.springframework.stereotype.Service;
@@ -32,5 +33,10 @@ public class ReviewQueryServiceImpl implements ReviewQueryService {
     @Override
     public Optional<Review> handle(GetReviewsByQualification query) {
         return reviewRepository.findByQualification(query.qualification());
+    }
+
+    @Override
+    public List<Review> handle(GetReviewsByRestaurantNameQuery query) {
+        return reviewRepository.findByRestaurantRestaurantName(query.restaurantName());
     }
 }

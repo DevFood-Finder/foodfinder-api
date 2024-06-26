@@ -2,6 +2,7 @@ package com.foodfinder.foodfinderapi.review.interfaces.rest;
 
 import com.foodfinder.foodfinderapi.review.domain.model.queries.GetAllReviewsQuery;
 import com.foodfinder.foodfinderapi.review.domain.model.queries.GetReviewsByIdQuery;
+import com.foodfinder.foodfinderapi.review.domain.model.queries.GetReviewsByRestaurantNameQuery;
 import com.foodfinder.foodfinderapi.review.domain.services.ReviewCommandService;
 import com.foodfinder.foodfinderapi.review.domain.services.ReviewQueryService;
 import com.foodfinder.foodfinderapi.review.interfaces.rest.resources.CreateReviewResource;
@@ -54,6 +55,14 @@ public class ReviewsController {
     public ResponseEntity<List<ReviewResource>> getAllReviews() {
         var getAllReviewsQuery = new GetAllReviewsQuery();
         var reviews = reviewQueryService.handle(getAllReviewsQuery);
+        var reviewResources = reviews.stream().map(ReviewResource::fromEntity).collect(Collectors.toList());
+        return ResponseEntity.ok(reviewResources);
+    }
+
+    @GetMapping("/restaurant/{restaurantName}")
+    public ResponseEntity<List<ReviewResource>> getReviewsByRestaurantName(@PathVariable String restaurantName) {
+        var getReviewsByRestaurantNameQuery = new GetReviewsByRestaurantNameQuery(restaurantName);
+        var reviews = reviewQueryService.handle(getReviewsByRestaurantNameQuery);
         var reviewResources = reviews.stream().map(ReviewResource::fromEntity).collect(Collectors.toList());
         return ResponseEntity.ok(reviewResources);
     }
