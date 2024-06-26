@@ -28,4 +28,6 @@ public class Restaurant extends User {
     @Column(name = "restaurant_phone")
     private String phone;
 
+
+
 }
