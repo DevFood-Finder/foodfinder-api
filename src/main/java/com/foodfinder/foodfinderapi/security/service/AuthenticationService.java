@@ -114,8 +114,6 @@ public class AuthenticationService {
         return AuthenticationResponseDto.builder()
                 .token(jwtToken)
                 .user(user)
-                .restaurant(restaurant)
-                .client(client)
                 .build();
     }
 }

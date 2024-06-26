@@ -15,6 +15,4 @@ import lombok.NoArgsConstructor;
 public class AuthenticationResponseDto {
     private String token;
     private User user;
-    private Restaurant restaurant;
-    private Client client;
 }
